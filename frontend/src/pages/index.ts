@@ -3,3 +3,4 @@ export * from './home/Home';
 export * from './image-analysis/ImageAnalysis';
 export * from './settings/Settings';
 export * from './upload-data/UploadData';
+export * from './stt/Stt';
