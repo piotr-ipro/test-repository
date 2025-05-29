@@ -56,6 +56,7 @@ import { ApiService } from './api.service';
         TtsModelModule,
         SttModule,
         RagModule,
+        ScannerModule,
     ],
     controllers: [ApiController],
     providers: [ApiService],
