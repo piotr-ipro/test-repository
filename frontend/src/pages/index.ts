@@ -4,3 +4,4 @@ export * from './image-analysis/ImageAnalysis';
 export * from './settings/Settings';
 export * from './upload-data/UploadData';
 export * from './stt/Stt';
+export * from './history/History';
