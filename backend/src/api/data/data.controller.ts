@@ -15,10 +15,10 @@ export class DataController {
         this.logger.log(
             `Received ${file.originalname} file (${Math.floor(file.size / 1024).toString()} kb) with documentId: ${documentId}.`,
         );
-        await this.dataService.putDataFileIntoDatabase(file, documentId);
+        const doc = await this.dataService.putDataFileIntoDatabase(file, documentId);
         return {
             message: `File ${file.originalname} uploaded successfully.`,
-            fileName: '',
+            documentId: doc.id,
             code: 200,
         };
     }

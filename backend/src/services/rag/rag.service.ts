@@ -54,7 +54,7 @@ export class RagService implements OnModuleInit {
         }
     }
 
-    public async addDocument(content: string, documentId: string): Promise<void> {
+    public async addDocument(content: string, documentId: string): Promise<string> {
         const normalizedDocumentId: string = documentId ? this.normalizeDocumentId(documentId) : uuidV4();
 
         this.logger.log(`Set document ID to ${normalizedDocumentId}.`);
@@ -65,9 +65,15 @@ export class RagService implements OnModuleInit {
         await this.collection.add({
             documents: chunks,
             ids,
+            metadatas: chunks.map(() => ({ docId: normalizedDocumentId })),
         });
 
         this.logger.log(`Added ${chunks.length} chunks to collection.`);
+        return normalizedDocumentId;
+    }
+
+    public async deleteDocument(docId: string): Promise<void> {
+        await this.collection.delete({ where: { docId } });
     }
 
     public async retrieveContextFromDatabase(chatQuestion: ChatQuestionDto): Promise<string[]> {

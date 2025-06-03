@@ -6,13 +6,14 @@ import { OllamaModule } from 'src/services/ollama/ollama.module';
 import { RagModule } from 'src/services/rag/rag.module';
 
 import databaseRegisteredConfig, { DatabaseConfig, defaultDatabaseConfig } from '../config/database.config';
-import { ChatHistoryEntity, LlmModelEntity, ProcessedFile } from '../entities';
+import { ChatHistoryEntity, LlmModelEntity, ProcessedFile, DocumentEntity } from '../entities';
 import { HeaderMiddleware } from '../middleware/header.middleware';
 import { LoggerMiddleware } from '../middleware/logger.middleware';
 import { ScannerModule } from '../services/scanner/scanner.module';
 
 import { ChatModule } from './chat/chat.module';
 import { DataModule } from './data/data.module';
+import { DocumentsModule } from './documents/documents.module';
 import { HistoryModule } from './history/history.module';
 import { ImageModule } from './image/image.module';
 import { ModelsModule } from './models/models.module';
@@ -37,7 +38,7 @@ import { ApiService } from './api.service';
                     username: dbConfig.username,
                     password: dbConfig.password,
                     database: dbConfig.database,
-                    entities: [ChatHistoryEntity, LlmModelEntity, ProcessedFile],
+                    entities: [ChatHistoryEntity, LlmModelEntity, ProcessedFile, DocumentEntity],
                     synchronize: true,
                     // logging: true,
                     // logger: 'advanced-console',
@@ -47,6 +48,7 @@ import { ApiService } from './api.service';
         ScheduleModule.forRoot(),
         ChatModule,
         DataModule,
+        DocumentsModule,
         HistoryModule,
         ImageModule,
         ModelsModule,

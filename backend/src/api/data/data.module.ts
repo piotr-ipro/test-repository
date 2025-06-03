@@ -1,12 +1,13 @@
 import { Module } from '@nestjs/common';
 
 import { RagModule } from '../../services/rag/rag.module';
+import { DocumentsModule } from '../documents/documents.module';
 
 import { DataController } from './data.controller';
 import { DataService } from './data.service';
 
 @Module({
-    imports: [RagModule],
+    imports: [RagModule, DocumentsModule],
     controllers: [DataController],
     providers: [DataService],
 })
